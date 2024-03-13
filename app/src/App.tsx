@@ -1,54 +1,6 @@
 import { useState } from "react";
-import { Description } from "./components/Description";
-import { Logo } from "./components/Logo";
-
-function isNumeric(variable: string) {
-  return !isNaN(parseFloat(variable));
-}
-
-function isBinaryFormat(variable: string) {
-  console.log(variable.length);
-  for (let i = 0; i < variable.length; i++) {
-    if (!(variable.charAt(i) == "1" || variable.charAt(i) == "0")) return false;
-  }
-  return true;
-}
-
-function convertBinaryToDecimal(variable: string): string {
-  if (variable == "") return "";
-  if (!isNumeric(variable)) return "INVALID INPUT";
-  if (!isBinaryFormat(variable)) return "THAT IS NOT A BINARY NUMBER";
-  return String(parseInt(variable, 2));
-}
-
-function BinaryOutput({ displayValue }: {displayValue: string}) {
-  return (
-    <>
-      <div className="text-primary font-inter font-medium">
-        {`>>`} {displayValue}
-      </div>
-    </>
-  );
-}
-
-function ConvertButton({
-  setter,
-  setValue,
-}: {
-  setter: React.Dispatch<React.SetStateAction<string>>;
-  setValue: string;
-}) {
-  return (
-    <>
-      <button
-        onClick={() => setter(setValue)}
-        className="bg-primary text-secondary rounded-lg font-semibold w-20"
-      >
-        Convert
-      </button>
-    </>
-  );
-}
+import { convertBinaryToDecimal } from "./utils";
+import { BinaryOutput, ConvertButton, Description, Logo } from "./components";
 
 function Bin2Dec() {
   const [value, setValue] = useState("");
